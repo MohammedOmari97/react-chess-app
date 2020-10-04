@@ -1,57 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Board from "./components/Board";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Tools from "./components/Tools";
+import styles from "./app.module.css";
+import LoadPGN from "./components/LoadPGN";
+import { game } from "./app/store";
+import { useDispatch, useSelector } from "react-redux";
+import { gameOver } from "./app/store";
+import useWindowSize from "./utilities/useWindowSize";
+import useDeviceDetect from "./utilities/useDeviceDetect";
 
 function App() {
+  const [rotation, setRotation] = useState(true);
+  const [myGame, setMyGame] = useState(game);
+  const dispatch = useDispatch();
+  const positions = useSelector((state) => state.positions.allPositions);
+  const { isMobile } = useDeviceDetect();
+
+  useEffect(() => {
+    if (myGame.game_over()) {
+      dispatch(gameOver());
+    }
+    setMyGame(game);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      {!isMobile ? (
+        <DndProvider backend={HTML5Backend}>
+          <div className={styles.container}>
+            <div className={styles.gameSection}>
+              <Board rotation={rotation} />
+              <Tools setRotation={setRotation} />
+            </div>
+            {/* <LoadPGN /> */}
+          </div>
+        </DndProvider>
+      ) : (
+        <div style={{ padding: "10px" }}>
+          This app uses ReactDnD with the HTML5 Backend which doesn't support
+          touch events. <br />
+          Use this app on a desktop.
+        </div>
+      )}
+    </>
   );
 }
 

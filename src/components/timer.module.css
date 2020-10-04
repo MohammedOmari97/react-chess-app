@@ -1,0 +1,65 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.playersTimers {
+  display: flex;
+  gap: 20px;
+}
+
+.slider {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.slider button {
+  margin: 0;
+}
+
+.slider input {
+  width: 100%;
+}
+
+.player1,
+.player2 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+.timer1,
+.timer2 {
+  text-align: center;
+  width: 80px;
+  background-color: #fafbfc;
+  border-color: #eaecef;
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(27, 31, 35, .04);
+  border: 1px solid #e1e4e8;
+}
+
+.active {
+  width: 5px;
+  height: 5px;
+  background: #4b4b4b;
+  border-radius: 50%;
+  transition: all .2s ease;
+  margin: auto;
+}
+
+@media screen and (max-width: 770px) {
+  .timer {
+    width: 100%;
+  }
+
+  .playersTimers {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

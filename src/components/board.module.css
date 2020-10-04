@@ -1,0 +1,31 @@
+.boardWrapper {
+  position: relative;
+  margin-right: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 530px;
+  height: 530px;
+  /* min-width: 30%; */
+  /* min-height: 30%; */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (max-width: 770px) {
+  .boardWrapper {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .board {
+    margin-top: 5px;
+    width: 85vw;
+    height: 85vw;
+  }
+}

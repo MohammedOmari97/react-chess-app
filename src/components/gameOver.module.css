@@ -1,0 +1,31 @@
+.gameOver {
+  display: flex;
+  flex-direction: column;
+  gap: 00px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  margin: auto;
+  z-index: 200;
+  text-align: center;
+  background-color: #fafbfc;
+  border-color: #eaecef;
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(27, 31, 35, .04);
+  border: 1px solid #e1e4e8;
+}
+
+h2,
+h3,
+h4 {
+  margin-top: 10px;
+}
+
+/* .button {
+  width: 140px;
+  margin: auto;
+  margin-bottom: 10px;
+} */
